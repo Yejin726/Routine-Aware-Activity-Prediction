@@ -136,7 +136,7 @@ Topk-1 accuracy = 65%
   prompt-only 대비 "패턴 매칭" 성능 상승
 
 ### Agentic_v1
- Agentic 설계 초기 버전  
+ Agentic 설계 초기 버전. 발생할 수 있는 불확실성에 대한 가설을 세우고 RAG에 반영함  
  
  #### 구조  
    - Observable Context  
@@ -191,6 +191,19 @@ Topk-1 accuracy = 65%
 │ Predict next action  │
 └──────────────────────┘
 ```
+- 성능
+```text
+Topk-1 accuracy = 58.33%
+```
+- 분석  
+  왜 되려 성능이 떨어졌는가?
+  
+   - RAG는 생각 하지 않기에 과거 유사 사례를 패턴 매칭  
+   - weekday의 강한 반복성, 토요일의 고정 시간 구조와 같은 low-entropy routine 구조에서 매우 강함  
+   - 기존 RAG에 Belief inference를 추가 하면서 불규칙성에 대한 추론을 모든 경우에 수행한다(Overthinking)  
+   - life-log의 대부분의 경우 규칙적인 구조이기 때문에 모든 timestep에 대해 추론할 필요가 없음  
+   - 모든 경우에 수행된 Belief error가 RAG에 영향을 미치고 더 나아가 결과에 영향을 끼쳤을 것으로 예상됨  
+   - 결론적으론 불필요한 추론이 반복됨  
 
 
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
