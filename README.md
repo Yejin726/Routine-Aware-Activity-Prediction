@@ -103,7 +103,8 @@ Topk-1 accuracy = 57.92%
 ```  
   과거 사례 참조 없으며 숨겨진 규칙(주기/날씨) 추론을 단독 수행해야 함  
 
-### RAG-only Prompt(Retrieval-Augmented)  
+### RAG-only (Retrieval-Augmented)  
+- prompt
 ```text
 You are predicting the user's next 30-minute activity from a life-log.
 
@@ -133,6 +134,46 @@ Rules:
 Topk-1 accuracy = 65%
 ```  
   prompt-only 대비 "패턴 매칭" 성능 상승
+
+### Agentic_v1
+ Agentic 설계 초기 버전
+
+ ```
+┌──────────────────────┐
+│ Observable Context   │
+│ (Given to LLM)       │
+│                      │
+│ - day_of_week        │
+│ - week_index         │
+│ - recent activities  │
+└─────────┬────────────┘
+          │
+          ▼
+┌──────────────────────┐
+│ Belief Inference     │
+│ Agent (Always ON)    │
+│                      │
+│ - rain?              │
+│ - late wakeup?       │
+│ - regime guess       │
+└─────────┬────────────┘
+          │
+          ▼
+┌──────────────────────┐
+│ RAG (Always or       │
+│ Frequently Used)     │
+│                      │
+│ Retrieve past cases  │
+└─────────┬────────────┘
+          │
+          ▼
+┌──────────────────────┐
+│ Decision / Planning  │
+│ Agent                │
+│                      │
+│ Predict next action  │
+└──────────────────────┘
+```
 
 
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
