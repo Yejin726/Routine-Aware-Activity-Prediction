@@ -102,7 +102,7 @@ Output ONE label only.
 ```text
 Topk-1 accuracy = 57.92%
 ```  
-  과거 사례 참조 없으며 숨겨진 규칙(주기/날씨) 추론을 단독 수행해야 함  
+  과거 사례 참조 없으며 숨겨진 규칙(주기/날씨) 추론을 단독 수행한 결과  
 
 ### RAG-only (Retrieval-Augmented)  
 - prompt
@@ -134,7 +134,7 @@ Rules:
 ```text
 Topk-1 accuracy = 65%
 ```  
-  prompt-only 대비 "패턴 매칭" 성능 상승
+  prompt-only 대비 "패턴 매칭" 성능 상승  
 
 ### Agentic_v1
  Agentic 설계 초기 버전. 발생할 수 있는 불확실성에 대한 가설을 세우고 RAG에 반영함  
