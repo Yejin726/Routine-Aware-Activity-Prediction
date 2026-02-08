@@ -76,10 +76,11 @@ Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계�
  <img width="549" height="649" alt="image" src="https://github.com/user-attachments/assets/63cf8965-7083-4bc7-b94c-6c6acf5ace03" />
  
 
-##Prompt
+##실험 결과
 
  
-### Prompt-only Baseline prompt  
+### Prompt-only Baseline 
+- Prompt  
 ```text
 You are predicting the user's next 30-minute activity.
 
@@ -95,6 +96,9 @@ Recent activity history:
 What is the next activity?
 
 Output ONE label only.
+```
+```text
+k1 accuracy = 57.92%
 ```
 
 ### RAG-only Prompt(Retrieval-Augmented)  
