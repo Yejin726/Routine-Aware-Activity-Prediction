@@ -288,11 +288,11 @@ Topk-1 accuracy = 67.92%
 
    
 
-## 실험 결과
+## 실험 결과  
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
 
 
+## 루틴 별 성능 비교  
 <img width="691" height="374" alt="image" src="https://github.com/user-attachments/assets/b2614fd0-ab83-41c5-93db-2311869e29e8" />
-
 
 <img width="442" height="178" alt="image" src="https://github.com/user-attachments/assets/eaf6c566-b3c2-4214-99a0-90b6fb15f4e4" />
