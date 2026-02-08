@@ -75,6 +75,25 @@ Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계�
   ### 데이타셋 예시
  <img width="549" height="649" alt="image" src="https://github.com/user-attachments/assets/63cf8965-7083-4bc7-b94c-6c6acf5ace03" />
 
+ ##Prompt
+ ###Prompt-only Baseline prompt
+```text
+You are predicting the user's next 30-minute activity.
+
+Calendar context:
+- day_of_week: Saturday
+- week_index: 1
+
+Recent activity history:
+10:00 wake_up
+10:30 breakfast
+11:00 relax_screen
+
+What is the next activity?
+
+Output ONE label only.
+
+
 
 
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
