@@ -74,11 +74,12 @@ Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계�
 
   ### 데이타셋 예시
  <img width="549" height="649" alt="image" src="https://github.com/user-attachments/assets/63cf8965-7083-4bc7-b94c-6c6acf5ace03" />
+ 
 
- ##Prompt
+##Prompt
 
  
- ###Prompt-only Baseline prompt  
+### Prompt-only Baseline prompt  
 ```text
 You are predicting the user's next 30-minute activity.
 
@@ -94,7 +95,33 @@ Recent activity history:
 What is the next activity?
 
 Output ONE label only.
+```
 
+### RAG-only Prompt(Retrieval-Augmented)  
+```text
+You are predicting the user's next 30-minute activity from a life-log.
+
+Calendar context:
+- day_of_week: {day_of_week}
+- week_index: {week_index}
+
+Recent activity history:
+{history_lines}
+
+Retrieved past examples:
+{retrieved_examples_text}
+
+Question:
+What is the most likely next activity at {next_ts}?
+
+Allowed labels:
+{label_list}
+
+Rules:
+- Use retrieved examples if helpful.
+- Output exactly ONE label from the allowed labels.
+- Output the label only.
+```
 
 
 
