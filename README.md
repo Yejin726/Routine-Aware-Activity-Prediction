@@ -97,9 +97,12 @@ What is the next activity?
 
 Output ONE label only.
 ```
+- 성능
 ```text
-k1 accuracy = 57.92%
+Topk-1 accuracy = 57.92%
 ```
+- 분석
+  과거 사례 참조 없으며 숨겨진 규칙(주기/날씨) 추론을 단독 수행해야 함  
 
 ### RAG-only Prompt(Retrieval-Augmented)  
 ```text
@@ -126,7 +129,12 @@ Rules:
 - Output exactly ONE label from the allowed labels.
 - Output the label only.
 ```
-
+- 성능
+```text
+Topk-1 accuracy = 65%
+```
+- 분석
+  prompt-only 대비 "패턴 매칭" 성능 상승
 
 
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
