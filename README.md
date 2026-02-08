@@ -203,9 +203,92 @@ Topk-1 accuracy = 58.33%
    - 기존 RAG에 Belief inference를 추가 하면서 불규칙성에 대한 추론을 모든 경우에 수행한다(Overthinking)  
    - life-log의 대부분의 경우 규칙적인 구조이기 때문에 모든 timestep에 대해 추론할 필요가 없음  
    - 모든 경우에 수행된 Belief error가 RAG에 영향을 미치고 더 나아가 결과에 영향을 끼쳤을 것으로 예상됨  
-   - 결론적으론 불필요한 추론이 반복됨  
+   - 결론적으론 불필요한 추론이 반복됨
+ 
 
+### Agentic V2  
+규칙적인 라이프 루틴에 희소하게 일어나는 불규칙성을 찾기 위해 모든 timestep마다 이 불규칙성을 찾는 것은 매우 비효율 적이다.  
+--> 불규칙이 일어나는 분기에만 reasoning을 하자
 
+ #### 구조  
+   - Entropy / Uncertainty Estimator
+    지금 예측 문제가 추론이 필요한지 여부를 결정하는 게이트
+
+   - Context Inspector
+     현재 상황이 "평범한 반복 루틴"인지 빠르게 스캔
+
+```
+┌──────────────────────┐
+│ Observable Context   │
+│ (Given to LLM)       │
+│                      │
+│ - day_of_week        │
+│ - week_index         │
+│ - recent activities  │
+└─────────┬────────────┘
+          │
+          ▼
+┌──────────────────────┐
+│ Context Inspector    │
+│ (Lightweight)        │
+│                      │
+│ - time / day check   │
+│ - pattern stability  │
+└─────────┬────────────┘
+          │
+          ▼
+┌──────────────────────┐
+│ Entropy / Uncertainty│
+│ Estimator            │
+│                      │
+│ Is this deterministic│
+│ or branching?        │
+└───────┬───────┬──────┘
+        │       │
+   low-entropy  high-entropy
+        │       │
+        ▼       ▼
+┌────────────┐  ┌──────────────────────┐
+│ Direct     │  │ Belief Inference     │
+│ Prediction │  │ Agent                │
+│ (No agent) │  │                      │
+└──────┬─────┘  │ - rain?              │
+       │        │ - late wakeup?       │
+       │        │ - regime type        │
+       │        └─────────┬────────────┘
+       │                  │
+       │                  ▼
+       │        ┌──────────────────────┐
+       │        │ RAG (Optional)        │
+       │        │                      │
+       │        │ Retrieve past cases  │
+       │        └─────────┬────────────┘
+       │                  │
+       └──────────┬───────┘
+                  ▼
+        ┌──────────────────────┐
+        │ Decision / Planning  │
+        │ Agent                │
+        │                      │
+        │ Predict next action  │
+        └──────────────────────┘
+```
+
+- 성능
+```text
+Topk-1 accuracy = 67.92%
+```
+
+- 분석  
+  - v1의 문제였던 모든 timestep에서 동일한 추론 파이프라인을 실행하면서 불필요한 belief inference를 수행  
+  - 결과가 RAG에 비해 크게 떨어지는 이유는 대부분의 데이타가 RAG에 적절한 low-entroy로 구성되어 있기 때문
+  - 그렇기에 Belief Inference를 수행하기 전 현재 상황의 entroy를 판단하고 불확실성이 없는 구간에선 추론을 하지 않고 단순 예측을 수행  
+  - 불확실성이 예상되는 구간에선 해당 정보를 RAG로 불러와 교차 검증을 수행하고 결과를 결정하게 함으로서 성능 개선 
+     
+
+   
+
+## 실험 결과
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
 
 
