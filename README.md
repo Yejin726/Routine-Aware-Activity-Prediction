@@ -136,7 +136,24 @@ Topk-1 accuracy = 65%
   prompt-only 대비 "패턴 매칭" 성능 상승
 
 ### Agentic_v1
- Agentic 설계 초기 버전
+ Agentic 설계 초기 버전  
+ 
+ #### 구조
+   - Observable Context
+      모델이 실제로 관측 가능한 정보만 제공하는 입력 영역
+      
+   - Belief Inference Agent
+     관측 불가능한 latent factor에 대한 가설을 세움
+     예시 belif :
+       비가 왔을 가능성
+       늦잠 여부
+       오늘 루틴이 예외 상황인지  
+     
+   - RAG  
+     현재 belief와 유사한 과거 사럐를 검색해 증거 제공  
+       
+   - Decision / Planning Agent  
+     모든 정보를 종합해 최종 다음 행동 1개를 예측
 
  ```
 ┌──────────────────────┐
