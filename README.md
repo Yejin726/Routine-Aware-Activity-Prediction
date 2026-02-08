@@ -29,6 +29,38 @@ Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계�
     불확실성 또는 분기가 존재하는 regime에서 효과적
 
 
+
+Synthetic Life-Logging Dataset 개요
+  본 연구는 실제 사용자 로그 대신, 
+  명시적 루틴 규칙 + 확률적 변동성을 결합한 synthetic life-logging dataset을 사용
+  해당 데이타셋은 규칙적인 루틴에 불규칙성을 부여하여 숨겨진 규칙을 추론 할 수 있는지 실험하였음.
+
+  기본 설정:
+    시간 단위 : 30분
+    하루 슬롯 : 48
+
+  기본 루틴 정의
+    - Weekday regime (Mon-Fri)
+      06:00 기상 → 출근 → 업무 → 점심 → 업무 → 퇴근
+      저녁: 요일별 고정 이벤트
+        Mon/Wed/Fri: 영어 학원
+        Tue/Thu: 운동
+    - Saturday regime 
+      10:00 기상 → 오전 휴식 → 오후 게임 → 저녁 외출 →  22:00 취침
+      숨겨진 규칙:
+        홀수 주: 친구 만남
+        짝수 주: 가족 만남
+    - Sunday regime
+      08:00 기상 → 교회 일정 → 점심 → 오후 운동 또는 휴식 → 저녁 게임 → 22:00 취침
+    - 부여된 불규칙성
+      비가 오면(20% 발생): 
+        운동 취소 → 휴식으로 변경, 
+        지하철 → 택시
+      늦잠 발생(10% 발생):
+        지하철 → 택시
+      
+
+
 <img width="613" height="374" alt="image" src="https://github.com/user-attachments/assets/e9953e27-5101-431d-a970-ad0b172bd248" />
 
 
