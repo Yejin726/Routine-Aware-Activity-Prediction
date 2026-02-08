@@ -71,6 +71,34 @@ Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계�
         지하철 → 택시  
       늦잠 발생(10% 발생):  
         지하철 → 택시  
+
+  ### 데이타셋 예시
+      {
+  "user_id": "U01",
+  "date": "2026-03-07",
+  "slot_minutes": 30,
+  "observable": {
+    "calendar_context": {
+      "day_of_week": "Sat",
+      "week_index": 1
+    },
+    "slots": [
+      { "ts": "10:00", "activity": "wake_up" },
+      { "ts": "10:30", "activity": "breakfast" },
+      { "ts": "11:00", "activity": "relax_screen" },
+      { "ts": "11:30", "activity": "relax_screen" },
+      { "ts": "12:00", "activity": "lunch" },
+      { "ts": "12:30", "activity": "lunch" },
+      { "ts": "13:00", "activity": "game" },
+      { "ts": "13:30", "activity": "game" },
+      { "ts": "14:00", "activity": "game" },
+      { "ts": "14:30", "activity": "game" },
+      { "ts": "17:30", "activity": "commute_subway" },
+      { "ts": "18:00", "activity": "social_friend" }
+    ]
+  }
+}
+
       
 
 
