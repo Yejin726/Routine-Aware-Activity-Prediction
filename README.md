@@ -295,4 +295,6 @@ Topk-1 accuracy = 67.92%
 ## 루틴 별 성능 비교  
 <img width="691" height="374" alt="image" src="https://github.com/user-attachments/assets/b2614fd0-ab83-41c5-93db-2311869e29e8" />
 
+### 토요일의 RAG 결과  
+ 토요일에 대한 결과가 유독 낮은 이유는 토요일로 호출해도 RAG에 노이즈가 많이 껴서 부정확한 결과를 만들어낸다.  
 <img width="442" height="178" alt="image" src="https://github.com/user-attachments/assets/eaf6c566-b3c2-4214-99a0-90b6fb15f4e4" />
