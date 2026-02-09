@@ -1,5 +1,9 @@
 # Routine-Aware-Activity-Prediction
 
+## Enviorments  
+1. synthetic dataset 생성을 위해 RoutineGenerator.ipynb를 실행하거나 첨부된 sample을 사용합니다.  
+2. LLM-prompt-only vs RAG-only vs Agentic.ipynb 의 샘플 경로를 맞춰주고 실행합니다.  
+
 
 ## 가설
 Routing prediction 성능은 사용되는 추론 매커니즘에 따라 단계적으로 향상된다.
